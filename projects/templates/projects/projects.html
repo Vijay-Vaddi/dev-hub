@@ -2,6 +2,17 @@
 
     {% block content %}
     
-        <p> Hello there. this is  projects</p>   
+        <p> Hello there. {{msg}}</p>
+        {% if number > 10 %}
+        <p>Yippikaye</p>
+        {% else %}
+        <p>Take what you can get! Give nothing back</p>
+        {% endif %}   
     
+    <ul>
+        {% for project in projects%}
+            <li><h4>{{project.name}}</h4></li>
+            <li>{{project.description}}</li>
+        {% endfor %}
+    </ul>
     {% endblock %}

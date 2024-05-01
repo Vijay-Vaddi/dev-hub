@@ -1,6 +1,15 @@
 what does WSGI, ASGI mean and what does it do? 
 Django middlewares
+
+--------------
     path('test_route/', views.test_route, name='Test route'),
     path('', views.test_route, name='Test route'),
 '' in path??
 name? for jinja calls
+
+--------------
+cant pass like this?
+    context = {'msg':'General Kenobi', 'number':10}
+
+-------
+
