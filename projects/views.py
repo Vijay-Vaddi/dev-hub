@@ -21,10 +21,17 @@ projects_list = [
 ]
 
 
-def test_route(request):
+def projects(request):
     number = 10
     context = {'msg':'General Kenobi', 'number':number, 'projects':projects_list}
     return render(request, 'projects/projects.html', context)
 
-def test_route1(request, pk):
-    return render(request, 'projects/test.html')
+def project(request, pk):
+    
+    for project in projects_list:
+        if str(project['id']) == pk:
+            break
+        else:
+            project=None
+
+    return render(request, 'projects/single_project.html', {'project':project})
