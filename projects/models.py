@@ -20,7 +20,7 @@ class Project(models.Model):
     tags = models.ManyToManyField('Tag', blank=True) #in quotes since Tag is defined below
     vote_total = models.IntegerField(default=0, null=True, blank=True)
     vote_ratio = models.IntegerField(default=0, null=True, blank=True)
-    created = models.DateTimeField(auto_now_add=True)
+    date_time = models.DateTimeField(auto_now_add=True)
     
     def __str__(self) -> str:
         return self.title
@@ -36,13 +36,17 @@ class Review(models.Model):
     # owner of review
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, 
                           editable=False, unique=True)
+    
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     body = models.TextField(null=True, blank=True)
     value = models.CharField(max_length=100, choices=VOTE_TYPE)
-    created = models.DateTimeField(auto_now_add=True)
+    date_time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
         return self.value
+    
+    class Meta:
+        ordering = ['date_time']
 
 class Tag(models.Model):
     # many-many with project table
@@ -50,7 +54,7 @@ class Tag(models.Model):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, 
                           editable=False, unique=True)
     name = models.CharField(max_length=200)
-    created = models.DateField(auto_now_add=True)
+    date_time = models.DateField(auto_now_add=True)
     
     def __str__(self) -> str:
         return self.name

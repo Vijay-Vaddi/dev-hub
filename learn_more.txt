@@ -5,4 +5,19 @@ db relationships:
 diff between char/textfield
 why char is given length but not textfield. 
 
+--------
+query sets.
+Model.objects.get(), filter, etc.. 
+learn and explore all the options available
+
+---------
+
+difference between object retured when using get() and filter()
+child_set not available when used with filter. 
+
+ans: filter returns a query set, and get returns a single object
+have have to do list conversion and parsing []
+
+obj = Project.objects.filter(title__icontains='vendor')
+list(obj.review_set.all()).value()[0].body --> select first review obj, then .body as attribute to get its value
 
