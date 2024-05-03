@@ -1,0 +1,24 @@
+models 
+==========
+blank=True
+This is for django to know that we can, 
+to submit forms with nothing in them. 
+null=true, is to let database know it can be null. 
+
+by default id can be blank? 
+ 
+-----
+
+after models, makemigrations and migrate, 
+but still wont be able to see in admin since
+django-admin is not directly connected to the db. 
+
+for this, 
+register models in admin file. 
+
+django models naming conventions 
+table is named singular (project) and django adds 's'
+
+can change it using meta class, verbose attr
+-----------
+

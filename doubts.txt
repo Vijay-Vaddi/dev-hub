@@ -13,3 +13,14 @@ cant pass like this?
 
 -------
 
+in models, 
+id = models.UUIDField
+why this is better? 
+
+-----------
+
+diff between __str__ and __repr__, 
+
+---
+
+
