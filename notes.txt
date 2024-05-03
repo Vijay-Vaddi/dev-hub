@@ -22,3 +22,7 @@ table is named singular (project) and django adds 's'
 can change it using meta class, verbose attr
 -----------
 
+many to many 
+tag can be connected to multiple models, 
+hence the relationship (project to Tag) is not defined in tag model but in Project model
+ 

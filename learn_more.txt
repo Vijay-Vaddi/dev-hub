@@ -1,0 +1,8 @@
+models:
+db relationships:
+    on_delete options (Cascade, setnull) etc
+
+diff between char/textfield
+why char is given length but not textfield. 
+
+
