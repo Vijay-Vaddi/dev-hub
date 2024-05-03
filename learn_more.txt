@@ -21,3 +21,6 @@ have have to do list conversion and parsing []
 obj = Project.objects.filter(title__icontains='vendor')
 list(obj.review_set.all()).value()[0].body --> select first review obj, then .body as attribute to get its value
 
+NOT clear yet!!!
+
+

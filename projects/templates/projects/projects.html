@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 
     {% block content %}
-    
-        <p> Hello there. {{msg}}</p>
-        {% if number > 10 %}
-        <p>Yippikaye</p>
-        {% else %}
-        <p>Take what you can get! Give nothing back</p>
-        {% endif %}   
-    
-    <ul>
-        {% for project in projects%}
-            <li><h4><a href="{% url 'project' project.id %}">{{project.name}}</h4></a></li>
-            <li>{{project.description}}</li>
+
+    <table>
+        <th>Title</th>
+        <th>Votes</th>
+        {% for project in projects %}
+        
+        <tr>
+            <td><a href="{% url 'project' project.id %}">{{project.title}}</a></td>
+            <td>{{project.vote_total}}</td>
+        </tr>
         {% endfor %}
-    </ul>
+        
+    </table>
+
     {% endblock %}

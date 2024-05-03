@@ -4,7 +4,11 @@
     
         <p> Hello there. this is  test</p>
         <ul>   
-        <li><h4>{{project.name}}</h4></li>
+        <li><h4>{{project.title}}</h4></li>
         <li>{{project.description}}</li>
+        Built on 
+        {% for tag in project.tags.all %}
+        {{tag}}
+        {% endfor %}
     </ul>
     {% endblock %}
