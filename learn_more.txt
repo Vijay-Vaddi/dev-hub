@@ -23,4 +23,10 @@ list(obj.review_set.all()).value()[0].body --> select first review obj, then .bo
 
 NOT clear yet!!!
 
+-------------
+
+Forms
+
+Model form class Meta attributes:
+
 
