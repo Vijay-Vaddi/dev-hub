@@ -26,11 +26,18 @@ list(obj.review_set.all()).value()[0].body --> select first review obj, then .bo
 
 NOT clear yet!!!
 
+----------
+Learn how to optimize django queries
+caching
+
 -------------
 
 Forms
 
 Model form class Meta attributes:
+CSRF TOKEN 
 
 ------
 Request - response cycle for django 
+
+------------
