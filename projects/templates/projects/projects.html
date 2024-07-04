@@ -1,25 +1,26 @@
 {% extends 'base.html' %}
 
     {% block content %}
-
+    
     <table>
         <tr>
-            <th>ID</th>
             <th>Project</th>
             <th>Votes</th>
             <th>Ratio</th>
             <th>Created</th>
             <th>Link</th>
+            <th></th>
         </tr>
         {% for project in projects%}
         <tr>
            
-            <td>{{project.id}}</td>
+            
             <td>{{project.title}}</td>
             <td>{{project.vote_total}}</td>
             <td>{{project.vote_ratio}}% votes</td>
             <td>{{project.date_time}}</td>
-            <td><a href="{% url 'project' project.id %}">{{project.title}}</a></td>
+            <td><a href="{% url 'project' project.id %}">View</a></td>
+            <td><a href="{% url 'update_project' project.id %}">Edit</a></td>
             
         </tr>
         {%endfor%}
