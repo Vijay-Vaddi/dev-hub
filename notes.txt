@@ -1,11 +1,15 @@
+urls: 
+passing request into a function makes it a view. 
+
 models 
 ==========
 blank=True
 This is for django to know that we can, 
-to submit forms with nothing in them. 
+submit forms with nothing in them. 
 null=true, is to let database know it can be null. 
 
-by default id can be blank? 
+by default django will create id for us so no need to define id field in models. 
+
  
 -----
 

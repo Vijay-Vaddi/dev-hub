@@ -6,7 +6,7 @@ from .forms import Create_project_form
 
 def projects(request):
     projects = Project.objects.all()
-
+    
     context = {'projects': projects}
     return render(request, 'projects/projects.html', context)
 

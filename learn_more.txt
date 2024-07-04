@@ -1,3 +1,6 @@
+what does WSGI, ASGI mean and what does it do? 
+Django middlewares
+
 models:
 db relationships:
     on_delete options (Cascade, setnull) etc
@@ -29,4 +32,5 @@ Forms
 
 Model form class Meta attributes:
 
-
+------
+Request - response cycle for django 

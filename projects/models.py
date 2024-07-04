@@ -5,9 +5,9 @@ class Project(models.Model):
     
     '''
     :title:<str> title of the project
-    :description:<str> title of the project
+    :description:<str> description of the project
     :demo link, source code:<str> url to live demo, source code respectively
-    :tags:<str> many-many relation to tags Model 
+    :tags:<str> many-to-many relation to tags Model 
     :vote_ratio:<int> to show what % of the votes were +ve vs -ve
     '''
     
@@ -27,7 +27,7 @@ class Project(models.Model):
 
 
 class Review(models.Model):
-    # one-one with project table
+    # one-to-one with project table
     VOTE_TYPE = (
         ('up', 'Up Vote'),
         ('down', 'Down Vote')
@@ -41,7 +41,7 @@ class Review(models.Model):
     body = models.TextField(null=True, blank=True)
     value = models.CharField(max_length=100, choices=VOTE_TYPE)
     date_time = models.DateTimeField(auto_now_add=True)
-
+    
     def __str__(self) -> str:
         return self.value
     
