@@ -1,14 +1,33 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, widgets
+from django import forms
 from .models import Project
+
+
 
 class ProjectForm(ModelForm):
     class Meta:
         model = Project
         # fields = '__all__'
-        exclude = ('vote_ratio','vote_total') #[]
-    
-    # to set a styling
+        # exclude = ('vote_ratio','vote_total') #[]
+        fields = [ 'title', 'description', 'tags', 'demo_link',
+                   'source_code', 'project_image'
+        ]
+
+        # another way of styling, define within the meta class
+        widgets = {
+                'tags': forms.CheckboxSelectMultiple(),
+            }   
+        
+    # to set a styling ['model_item_identifier']
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['title'].widget.attrs.update({'style':'color:red'})
+        super(ProjectForm, self).__init__(*args, **kwargs)
+        
+        # self.fields['title'].widget.attrs.update({'class':'input input--text', 
+        #                                           'placeholder':'Project Title'})
+       
+        # adding class to each field
+        for name, field in self.fields.items():
+            field.widget.attrs.update({'class':'input input--text'})
+
+        # check if exclude can be used
 
