@@ -25,6 +25,8 @@ SECRET_KEY = 'django-insecure-nt0iqm37+%6k!^04k(o*wud=qgn9w9p3+4+y_9f5s3-gp_gxb-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# the hosts that are allowed to connect to this web app
+# ALLOWED_HOSTS = ['localhost', '127.0.0.1:8000', 'mywebapp.com',...]
 ALLOWED_HOSTS = []
 
 
@@ -48,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'dev_hub.urls'
@@ -127,6 +130,9 @@ MEDIA_ROOT = BASE_DIR/"static/images/"
 
 # where to retrieve media content
 MEDIA_URL = '/images/'
+
+# defines where our static files in production will be.
+STATIC_ROOT = BASE_DIR/'static_files/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
