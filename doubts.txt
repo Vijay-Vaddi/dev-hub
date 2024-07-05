@@ -20,4 +20,6 @@ diff between __str__ and __repr__,
 
 ---
 
+{load static } in all pages? even inherited from main page?!!
+
 
