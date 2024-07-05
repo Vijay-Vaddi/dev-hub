@@ -6,14 +6,12 @@ from .forms import ProjectForm
 
 def projects(request):
     projects = Project.objects.all()
-
     context = {'projects': projects}
+    
     return render(request, 'projects/projects.html', context)
 
-def project(request, pk):
-    
+def project(request, pk): 
     project = Project.objects.get(id=pk)
-    
     context = {'project':project}
 
     return render(request, 'projects/single_project.html', context)
@@ -31,8 +29,7 @@ def create_project(request):
     return render(request, 'projects/project_form.html', context)
 
 
-def update_project(request, pk):
-    
+def update_project(request, pk):    
     proj = Project.objects.get(id=pk)
 
     # prefil form with proj obj to view in templates
@@ -49,6 +46,12 @@ def update_project(request, pk):
     return render(request, 'projects/project_form.html', context)
 
 
-
-def delete_project(request):
-    pass
+def delete_project(request, pk):
+    proj = Project.objects.get(id=pk)
+    context = {'object':proj}
+   
+    if request.method=='POST':
+        proj.delete()
+        return redirect('index')
+    
+    return render(request, 'projects/delete_object.html', context)
