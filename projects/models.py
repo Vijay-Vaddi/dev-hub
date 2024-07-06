@@ -1,8 +1,8 @@
 from django.db import models
 import uuid
+from users.models import Profile
 
 class Project(models.Model):
-    
     '''
     :title:<str> title of the project
     :description:<str> description of the project
@@ -10,9 +10,10 @@ class Project(models.Model):
     :tags:<str> many-to-many relation to tags Model 
     :vote_ratio:<int> to show what % of the votes were +ve vs -ve
     '''
-    
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, 
                           editable=False, unique=True)
+    owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, 
+                              null=True, blank=True)
     title = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
     project_image = models.ImageField(null=True, blank=True, default='default.jpg')
