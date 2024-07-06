@@ -32,3 +32,13 @@ hence the relationship (project to Tag) is not defined in tag model but in Proje
 
 ==========
 No form.delete(), only form.save() for creating and updating model objects.
+
+
+==========
+user profile model, create a new model instead of extending built in User model
+-add extra required attributes like prof pic, links, social etc
+- isolate from core user model
+- if extended and when changing user model, if something goes wrong in User model, 
+    it can be dangerous since many things are depended on core User model than custom models. 
+- like authentications, security, etc 
+

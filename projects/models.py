@@ -21,7 +21,7 @@ class Project(models.Model):
     tags = models.ManyToManyField('Tag', blank=True) #in quotes since Tag is defined below
     vote_total = models.IntegerField(default=0, null=True, blank=True)
     vote_ratio = models.IntegerField(default=0, null=True, blank=True)
-    date_time = models.DateTimeField(auto_now_add=True)
+    created_date_time = models.DateTimeField(auto_now_add=True)
     
     def __str__(self) -> str:
         return self.title
