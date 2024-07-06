@@ -42,24 +42,11 @@
                   {{profile.bio | slice:"150"}}
                 </p>
                 <div class="dev__skills">
-                  <span class="tag tag--pill tag--main">
-                    <small>JavaScript</small>
+                  {% for skill in profile.skill_set.all %}
+                    <span class="tag tag--pill tag--main">
+                    <small>{{skill}}</small>
                   </span>
-                  <span class="tag tag--pill tag--main">
-                    <small>React</small>
-                  </span>
-                  <span class="tag tag--pill tag--main">
-                    <small>SCSS</small>
-                  </span>
-                  <span class="tag tag--pill tag--main">
-                    <small>Nodejs</small>
-                  </span>
-                  <span class="tag tag--pill tag--main">
-                    <small>Express</small>
-                  </span>
-                  <span class="tag tag--pill tag--main">
-                    <small>GraphQL</small>
-                  </span>
+                  {%endfor%}
                 </div>
               </a>
             </div>

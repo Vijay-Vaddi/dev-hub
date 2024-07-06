@@ -42,3 +42,6 @@ user profile model, create a new model instead of extending built in User model
     it can be dangerous since many things are depended on core User model than custom models. 
 - like authentications, security, etc 
 
+================
+{% for skill in profile.skill_set.all %}
+model.child_set.all gives the child items ( _set is imp)
