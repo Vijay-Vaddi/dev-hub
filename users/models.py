@@ -17,6 +17,7 @@ class  Profile(models.Model):
     social_twitter = models.CharField(max_length=200, blank=True, null=True)
     social_website = models.CharField(max_length=200, blank=True, null=True)
     social_youtube = models.CharField(max_length=200, blank=True, null=True)
+    social_linkedin = models.CharField(max_length=200, blank=True, null=True)
     created_date_time = models.TimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, primary_key=True,
                           editable=False, unique=True)

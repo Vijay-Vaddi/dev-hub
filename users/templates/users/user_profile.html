@@ -8,25 +8,36 @@
         <div class="column column--1of3">
           <div class="card text-center">
             <div class="card__body dev">
-              <img class="avatar avatar--xl" src="https://avatars.githubusercontent.com/u/33843378" />
-              <p class="dev__title">Expirance FullStack Developer, Youtuber and Instructor</p>
-              <p class="dev__location">Based in Florida, USA</p>
+              <img class="avatar avatar--xl" src="{{profile.profile_image.url}}" />
+              <h2 class="dev__name">{{profile.name}}</h2>
+              <p class="dev__title">{{profile.short_intro}}</p>
+              <p class="dev__location">{{profile.location}}</p>
               <ul class="dev__social">
+                {% if profile.social_github%}
                 <li>
                   <a title="Github" href="#" target="_blank"><i class="im im-github"></i></a>
                 </li>
-                <li>
-                  <a title="Stackoverflow" href="#" target="_blank"><i class="im im-stackoverflow"></i></a>
-                </li>
-                <li>
-                  <a title="Twitter" href="#" target="_blank"><i class="im im-twitter"></i></a>
-                </li>
+                {% endif %}
+                {% if profile.social_linkedin%}
                 <li>
                   <a title="LinkedIn" href="#" target="_blank"><i class="im im-linkedin"></i></a>
                 </li>
+                {% endif %}
+                {% if profile.social_twitter%}
+                <li>
+                  <a title="Twitter" href="#" target="_blank"><i class="im im-twitter"></i></a>
+                </li>
+                {% endif %}
+                {% if profile.social_website %}
                 <li>
                   <a title="Personal Website" href="#" target="_blank"><i class="im im-globe"></i></a>
                 </li>
+                {% endif %}
+                {% if profile.social_youtube %}
+                <li>
+                  <a title="Personal Website" href="#" target="_blank"><i class="im im-youtube"></i></a>
+                </li>
+                {% endif %}
               </ul>
               <a href="#" class="btn btn--sub btn--lg">Send Message </a>
             </div>
@@ -195,7 +206,5 @@
       </div>
     </div>
   </main>
-</body>
 
-</html>
 {%endblock%}
