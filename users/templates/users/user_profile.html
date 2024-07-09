@@ -15,27 +15,27 @@
               <ul class="dev__social">
                 {% if profile.social_github%}
                 <li>
-                  <a title="Github" href="#" target="_blank"><i class="im im-github"></i></a>
+                  <a title="Github" href="#" target="_blank"><i class="fa fa-github"></i></a>
                 </li>
                 {% endif %}
                 {% if profile.social_linkedin%}
                 <li>
-                  <a title="LinkedIn" href="#" target="_blank"><i class="im im-linkedin"></i></a>
+                  <a title="LinkedIn" href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
                 </li>
                 {% endif %}
                 {% if profile.social_twitter%}
                 <li>
-                  <a title="Twitter" href="#" target="_blank"><i class="im im-twitter"></i></a>
+                  <a title="Twitter" href="#" target="_blank"><i class="fa fa-twitter"></i></a>
                 </li>
                 {% endif %}
                 {% if profile.social_website %}
                 <li>
-                  <a title="Personal Website" href="#" target="_blank"><i class="im im-globe"></i></a>
+                  <a title="Personal Website" href="#" target="_blank"><i class="fa fa-globe"></i></a>
                 </li>
                 {% endif %}
                 {% if profile.social_youtube %}
                 <li>
-                  <a title="Personal Website" href="#" target="_blank"><i class="im im-youtube"></i></a>
+                  <a title="Personal Website" href="#" target="_blank"><i class="fa fa-youtube"></i></a>
                 </li>
                 {% endif %}
               </ul>
@@ -46,73 +46,30 @@
         <div class="column column--2of3">
           <div class="devInfo">
             <h3 class="devInfo__title">About Me</h3>
-            <p class="devInfo__about">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex illum ipsum iusto consequatur. Totam,
-              dolorum fugiat, debitis facere illo nostrum nesciunt maxime, deserunt enim voluptatibus modi natus velit
-              voluptatum. Dicta eritatis exercitationem ut quos a placeat obcaecati? Architecto illum!
-              <br />
-              Amet consectetur adipisicing elit. Veritatis exercitationem ut quos a placeat obcaecati? Architecto
-              illum, atque delectus nemo dolorem inventore ab facilis? Dolor placeat vel delectus ipsam ullam.
-            </p>
+            <p class="devInfo__about">{{profile.bio}}</p>
           </div>
           <div class="devInfo">
+            {% if top_skills %}
             <h3 class="devInfo__title">Skills</h3>
             <div class="devInfo__skills">
+              {% for skill in top_skills%}
               <div class="devSkill">
-                <h4 class="devSkill__title">JavaScript</h4>
-                <p class="devSkill__info">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae neque voluptatum ut? Quaerat, ea
-                  cumque! Dolorum provident esse molestias commodi odit sapiente quod quasi corrupti obcaecati? Nobis
-                  ex temporibus quaerat!
+                <h4 class="devSkill__title">{{skill.name}}</h4>
+                <p class="devSkill__info">{{skill.description}}
                 </p>
               </div>
-              <div class="devSkill">
-                <h4 class="devSkill__title">React</h4>
-                <p class="devSkill__info">
-                  Smet consectetur adipisicing elit. Omnis, nihil? Accusamus aspernatur aut debitis vitae quaerat
-                  nihil fugiat, doloremque nesciunt alias pariatur maxime unde, nam saepe laborum at odit labore.
-                </p>
-              </div>
-              <div class="devSkill">
-                <h4 class="devSkill__title">Express(Nodejs)</h4>
-                <p class="devSkill__info">
-                  Auae error deleniti aperiam enim nisi nesciunt, ratione eveniet eos fuga ad recusandae mollitia!
-                  Facere earum, distinctio nihil recusandae ipsum nesciunt. Possimus, ex. Officia maxime nihil
-                  inventore cum tenetur! Veritatis sapiente libero ducimus nesciunt itaque, placeat inventore sint
-                  blanditiis?
-                </p>
-              </div>
-
+              {% endfor %}
+              {%endif%}
+              {% if other_skills %}
               <h3 class="devInfo__subtitle">Other Skills</h3>
               <div class="devInfo__otherSkills">
+                {% for other_skill in other_skills %}
                 <span class="tag tag--pill tag--sub tag--lg">
-                  <small>Figma</small>
+                  <small>{{other_skill.name}}</small>
                 </span>
-                <span class="tag tag--pill tag--sub tag--lg">
-                  <small>Vuejs</small>
-                </span>
-                <span class="tag tag--pill tag--sub tag--lg">
-                  <small>REST API</small>
-                </span>
-                <span class="tag tag--pill tag--sub tag--lg">
-                  <small>GraphQL</small>
-                </span>
-                <span class="tag tag--pill tag--sub tag--lg">
-                  <small>TypeScript</small>
-                </span>
-                <span class="tag tag--pill tag--sub tag--lg">
-                  <small>Webpack</small>
-                </span>
-                <span class="tag tag--pill tag--sub tag--lg">
-                  <small>NextJS</small>
-                </span>
-                <span class="tag tag--pill tag--sub tag--lg">
-                  <small>Postgres</small>
-                </span>
-                <span class="tag tag--pill tag--sub tag--lg">
-                  <small>MongoDB</small>
-                </span>
+                {% endfor %}
               </div>
+              {%endif%}
             </div>
           </div>
           <div class="devInfo">
