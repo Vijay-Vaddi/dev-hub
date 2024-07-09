@@ -14,6 +14,10 @@ def user_profile(request, pk):
     top_skills = profile.skill_set.exclude(description__exact='')
     # get skills with no description
     other_skills = profile.skill_set.filter(description='')
-    context = {'profile':profile, 'top_skills':top_skills, "other_skills":other_skills}
+    # get projets
+    projects = profile.project_set.all()
+
+    context = {'profile':profile, 'top_skills':top_skills, 
+               "other_skills":other_skills, 'projects':projects }
     return render(request, 'users/user_profile.html', context)
 
