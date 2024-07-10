@@ -23,3 +23,6 @@ diff between __str__ and __repr__,
 {load static } in all pages? even inherited from main page?!!
 
 
+=========
+when to use project.tags_set.all
+and when to use project.tags.all, diff ? 
