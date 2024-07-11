@@ -41,3 +41,7 @@ CSRF TOKEN
 Request - response cycle for django 
 
 ------------
+
+Signals in depth 
+----------------
+

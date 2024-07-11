@@ -45,3 +45,16 @@ user profile model, create a new model instead of extending built in User model
 ================
 {% for skill in profile.skill_set.all %}
 model.child_set.all gives the child items ( _set is imp)
+
+===========
+Signals 
+
+signals allows fire off multiple events inside our applications
+for eg when a user registers, we can auto generate a profile and listen for events,
+based on what happens to the user. 
+
+in signals there is a sender and a receiver. 
+once a event(action) is triggered, sender would be that action user being created,
+and receiver would be the function to send email. 
+
+1st create sender and reciver that fires off any time an event occurs
