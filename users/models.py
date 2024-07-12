@@ -2,7 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 import uuid
 # for signals
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
+from django.dispatch import receiver
 
 class  Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
@@ -24,7 +25,7 @@ class  Profile(models.Model):
                           editable=False, unique=True)
     
     def __str__(self) -> str:
-        return str(self.user.username) 
+        return str(self.username) 
     
 
 class Skill(models.Model):
@@ -39,8 +40,20 @@ class Skill(models.Model):
     def __str__(self) -> str:
         return str(self.name)
 
-#signals receiver for post_save   
-def profile_created(sender, instance, created_date_time, **kwargs):
-    print('New user created!!')
+#signals receiver for post_save
+@receiver(post_save, sender=Profile)   
+def profile_updated(sender, instance, created, **kwargs):
+    print('User Updated!!')
+    print('Created?', created)
+    print('instance', instance)
 
-post_save.connect(profile_created, sender=Profile)
+
+@receiver(post_delete, sender=Profile)
+def user_deleted(sender, instance, **kwargs):
+    print('Deleting user...') 
+
+# one way to use signals
+# post_save.connect(profile_updated, sender=Profile)
+# post_delete.connect(user_deleted, sender=Profile)
+
+ 
