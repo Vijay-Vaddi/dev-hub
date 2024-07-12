@@ -58,3 +58,4 @@ once a event(action) is triggered, sender would be that action user being create
 and receiver would be the function to send email. 
 
 1st create sender and reciver that fires off any time an event occurs
+use case: create a user, then trigger a function to create a profile and connect it to user. 
