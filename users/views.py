@@ -21,3 +21,5 @@ def user_profile(request, pk):
                "other_skills":other_skills, 'projects':projects }
     return render(request, 'users/user_profile.html', context)
 
+def login_page(request):
+    return render(request, 'users/login.html')
