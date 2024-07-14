@@ -18,16 +18,17 @@ def profile_deleted(sender, instance, **kwargs):
     user.delete()
 
 
-@receiver(post_save, sender=User)
+@receiver(post_save, sender=Profile)
 def create_profile(sender, instance, created, **kwargs):
     print('New user detected, creating user profile...')
-    user = instance
-    profile = Profile.objects.create(
-        user = user,
-        username = user.username,
-        email = user.email,
-        name = user.first_name,
-    )
+    if created:
+        user = instance
+        profile = Profile.objects.create(
+            user = user,
+            username = user.username,
+            email = user.email,
+            name = user.first_name,
+        )
 
     print('Done!!')
 

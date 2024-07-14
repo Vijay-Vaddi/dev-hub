@@ -26,3 +26,6 @@ diff between __str__ and __repr__,
 =========
 when to use project.tags_set.all
 and when to use project.tags.all, diff ? 
+
+signals users-profile creations path!!
+Understand clearly. 

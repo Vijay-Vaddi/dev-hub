@@ -63,3 +63,10 @@ use case: create a user, then trigger a function to create a profile and connect
 **after creating signals.py
 import user.signals in users.config using ready method
 
+===============
+
+Authentications
+
+Django maintains sessions in its db table, 
+does not delete info but erases from cookie after logout. 
+
