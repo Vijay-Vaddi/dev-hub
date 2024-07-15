@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Profile, User
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 # Create your views here.
 
 def profiles(request):
@@ -45,3 +45,7 @@ def login_page(request):
         else:
             print('username or password is incorrect')
     return render(request, 'users/login.html')
+
+def logout_user(request):
+     logout(request)
+     return redirect('login')
