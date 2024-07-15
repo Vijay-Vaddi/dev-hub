@@ -45,3 +45,4 @@ Request - response cycle for django
 Signals in depth 
 ----------------
 
+whats in requst object?

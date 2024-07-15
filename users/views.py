@@ -22,7 +22,11 @@ def user_profile(request, pk):
                "other_skills":other_skills, 'projects':projects }
     return render(request, 'users/user_profile.html', context)
 
-def login_page(request):
+def login_user(request):
+    
+    # if user is already logged in, redirect
+    if request.user.is_authenticated:
+         return redirect('profiles') 
 
     if request.method == 'POST':
         username = request.POST['username']
@@ -47,5 +51,6 @@ def login_page(request):
     return render(request, 'users/login.html')
 
 def logout_user(request):
+     print(request)
      logout(request)
      return redirect('login')
