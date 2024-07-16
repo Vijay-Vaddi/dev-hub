@@ -46,7 +46,7 @@ def login_user(request):
         
         if user is not None:
                 login(request, user)
-                messages.error(request, 'Logged in')    
+                messages.info(request, 'Logged in')    
                 return redirect('profiles')
         else:
             messages.error(request, 'username or password is incorrect')
@@ -55,5 +55,5 @@ def login_user(request):
 def logout_user(request):
      print(request)
      logout(request)
-     messages.error(request, 'Logged out')
+     messages.info(request, 'Logged out')
      return redirect('login')
