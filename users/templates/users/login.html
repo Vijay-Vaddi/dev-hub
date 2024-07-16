@@ -15,10 +15,11 @@
 <h5>Register here</h5>
 <form method="POST" action="{% url 'register' %}">
     {% csrf_token %}
-    <input type="text" name="username" placeholder="Enter Username"/><br>
+    {{form.as_p}}
+    <!-- <input type="text" name="username" placeholder="Enter Username"/><br>
     <input type="password" name="password" placeholder="Enter password"/><br>
-    <input type="password" name="password" placeholder="Confirm password"/><br>
-    <input type="submit" value="Login" /><br>
+    <input type="password" name="password" placeholder="Confirm password"/><br>-->
+    <input type="submit" value="Register" /><br>
     <p>Have an account? <a href="{% url 'login' %}">Login here</a></p>
 </form>
 {% endif %}

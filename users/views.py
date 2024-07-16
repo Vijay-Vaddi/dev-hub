@@ -1,9 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Profile, User
 from django.contrib.auth import login, authenticate, logout
-
-
-# Create your views here.
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 
 def profiles(request):
@@ -57,10 +55,17 @@ def login_user(request):
 
 def register_user(request):
     page = 'register'
-    context = {'page':page}
-    if request.method == 'POST':
-         pass
+    form = UserCreationForm()
+    context = {'page':page, 'form':form}
 
+    # register user 
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.username = user.username.lower()
+            user.save()
+            return redirect('login')
 
     return render(request, 'users/login.html', context)
 
