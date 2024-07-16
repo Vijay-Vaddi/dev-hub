@@ -39,6 +39,7 @@ CSRF TOKEN
 
 ------
 Request - response cycle for django 
+what does middlewares do in the cycle? 
 
 ------------
 
