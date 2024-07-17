@@ -18,20 +18,23 @@ def profile_deleted(sender, instance, **kwargs):
     user.delete()
 
 
-@receiver(post_save, sender=Profile)
+# @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
-    print('New user detected, creating user profile...')
+    print('New user detected, 12122 creating user profile...')
     if created:
-        user = instance
-        profile = Profile.objects.create(
-            user = user,
-            username = user.username,
-            email = user.email,
-            name = user.first_name,
-        )
+        try:
+            user = instance
+            Profile.objects.create(
+                user = user,
+                username = user.username,
+                email = user.email,
+                name = user.first_name)
+        except Exception as e:
+            print('something went wrong', e)
 
+        # profile.save()
     print('Done!!')
 
 # one way to use signals
-# post_save.connect(profile_updated, sender=Profile)
+post_save.connect(create_profile, sender=User)
 # post_delete.connect(user_deleted, sender=Profile)
