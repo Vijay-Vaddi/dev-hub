@@ -11,6 +11,49 @@
     <input type="submit" value="Login" /><br>
     <p>Register <a href="{% url 'register' %}">here</a></p>
 </form>
+
+<div class="auth">
+  <div class="card">
+    <div class="auth__header text-center">
+      <!-- add an image here if possible -->
+      <h3>Account Login</h3>
+      <p>Hello Developer, Welcome!</p>
+    </div>
+    <form method="POST" action="{% url 'login' %}" class="form auth__form">
+      {% csrf_token %}
+      <div class="form__field">
+        <label for="formInput#text">Username: </label>
+        <input
+          class="input input--text"
+          id="formInput#text"
+          type="text"
+          name="username"
+          placeholder="Enter username"
+        />
+      </div>
+
+      <div class="form__field">
+        <label for="formInput#password">Password: </label>
+        <input
+          class="input input--password"
+          id="formInput#passowrd"
+          type="password"
+          name="password"
+          placeholder="password"
+        />
+      </div>
+      <div class="auth__actions">
+        <input class="btn btn--sub btn--lg" type="submit" value="Log In" />
+        
+      </div>
+    </form>
+    <div class="auth__alternative">
+      <p>Don’t have an Account?</p>
+      <a href="{% url 'register' %}">Sign Up</a>
+    </div>
+  </div>
+</div>
+
 {% elif page == 'register' %}
 <h5>Register here</h5>
 <form method="POST" action="{% url 'register' %}">
