@@ -3,6 +3,7 @@ from .models import Profile, User
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from .form import CustomUserCreationForm
 
 def profiles(request):
     profiles = Profile.objects.all()
@@ -22,6 +23,7 @@ def user_profile(request, pk):
     context = {'profile':profile, 'top_skills':top_skills, 
                "other_skills":other_skills, 'projects':projects }
     return render(request, 'users/user_profile.html', context)
+
 
 def login_user(request):
     page = 'login'
@@ -53,19 +55,26 @@ def login_user(request):
             messages.error(request, 'username or password is incorrect')
     return render(request, 'users/login.html', context)
 
+
 def register_user(request):
     page = 'register'
-    form = UserCreationForm()
+    form = CustomUserCreationForm()
     context = {'page':page, 'form':form}
 
     # register user 
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
+        print(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
             user.username = user.username.lower()
             user.save()
-            return redirect('login')
+
+            messages.success(request, 'User account created')
+            login(request, user)
+            return redirect('profiles')
+        else:
+            messages.error(request, 'Registration failed for some reason')
 
     return render(request, 'users/login.html', context)
 
