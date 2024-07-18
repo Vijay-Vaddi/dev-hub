@@ -56,15 +56,93 @@
 
 {% elif page == 'register' %}
 <h5>Register here</h5>
-<form method="POST" action="{% url 'register' %}">
+<!-- <form method="POST" action="{% url 'register' %}">
     {% csrf_token %}
     {{form.as_p}}
     <!-- <input type="text" name="username" placeholder="Enter Username"/><br>
     <input type="password" name="password" placeholder="Enter password"/><br>
     <input type="password" name="password" placeholder="Confirm password"/><br>-->
-    <input type="submit" value="Register" /><br>
-    <p>Have an account? <a href="{% url 'login' %}">Login here</a></p>
-</form>
+    <!-- <input type="submit" value="Register" /><br>
+    <p>Have an account? <a href="{% url 'login' %}">Login here</a></p> -->
+<!-- </form>  -->
+
+<div class="auth">
+  <div class="card">
+    <div class="auth__header text-center">
+    
+      <h3>Account SignUp</h3>
+      <p>Create a new developer account</p>
+    </div>
+
+    <form action="{% url 'register' %}" method="POST" class="form auth__form">
+      {% csrf_token %}
+      <div class="form__field">
+        <label for="formInput#text">Name: </label>
+        <input
+          class="input input--text"
+          id="formInput#text"
+          type="text"
+          name="first_name"
+          placeholder="Eg, John"
+        />
+      </div>
+
+      <div class="form__field">
+        <label for="formInput#text">Username: </label>
+        <input
+          class="input input--text"
+          id="formInput#text"
+          type="text"
+          name="username"
+          placeholder="john_cena"
+        />
+      </div>
+
+
+      <div class="form__field">
+        <label for="formInput#email">Email Address: </label>
+        <input class="input input--email"
+          id="formInput#email"
+          type="email"
+          name="email"
+          placeholder="Email"
+        />
+      </div>
+
+      
+      <div class="form__field">
+        <label for="formInput#password">Password: </label>
+        <input
+          class="input input--password"
+          id="formInput#passowrd"
+          type="password"
+          name="password1"
+          placeholder="password"
+        />
+      </div>
+
+      <div class="form__field">
+        <label for="formInput#confirm-password">Confirm Password: </label>
+        <input class="input input--password"
+          id="formInput#confirm-passowrd"
+          type="password"
+          name="password2"
+          placeholder="confirm password"
+        />
+      </div>
+
+      <div class="auth__actions">
+        <input class="btn btn--sub btn--lg" type="submit" value="Register" />
+      </div>
+    </form>
+
+    <div class="auth__alternative">
+      <p>Already have an Account?</p>
+      <a href="{% url 'login' %}">Log In</a>
+    </div>
+  </div>
+</div>
+
 {% endif %}
 
 {% endblock %}
