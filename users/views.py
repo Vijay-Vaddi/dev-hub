@@ -53,7 +53,7 @@ def login_user(request):
                 return redirect('profiles')
         else:
             messages.error(request, 'username or password is incorrect')
-    return render(request, 'users/login.html', context)
+    return render(request, 'users/login_register.html', context)
 
 
 def register_user(request):
@@ -76,7 +76,7 @@ def register_user(request):
         else:
             messages.error(request, 'Registration failed for some reason')
 
-    return render(request, 'users/login.html', context)
+    return render(request, 'users/login_register.html', context)
 
 
 def logout_user(request):
