@@ -73,8 +73,10 @@ def register_user(request):
             messages.success(request, 'User account created')
             login(request, user)
             return redirect('profiles')
-        else:
-            messages.error(request, 'Registration failed for some reason')
+        
+        print(form.errors)
+        messages.error(request, 'Registration failed for some reason')
+        return render(request,'users/login_register.html', {'form':form, 'page':page})
 
     return render(request, 'users/login_register.html', context)
 
