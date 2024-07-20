@@ -1,0 +1,3 @@
+remove form error alert  from base.html and move to forms. 
+fix alert button js link error 
+

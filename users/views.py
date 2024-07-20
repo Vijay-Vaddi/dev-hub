@@ -39,13 +39,11 @@ def login_user(request):
         # check if user exists
         try:
             user = User.objects.get(username=username)    
-            print('obj', user)
         except:
             messages.error(request, 'Username does not exist')
 
         # check user by matching with password and login
         user = authenticate(request, username=username, password=password)
-        print('authen', user)
         
         if user is not None:
                 login(request, user)
@@ -64,7 +62,6 @@ def register_user(request):
     # register user 
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
-        print(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
             user.username = user.username.lower()
@@ -74,7 +71,6 @@ def register_user(request):
             login(request, user)
             return redirect('profiles')
         
-        print(form.errors)
         messages.error(request, 'Registration failed for some reason')
         return render(request,'users/login_register.html', {'form':form, 'page':page})
 
