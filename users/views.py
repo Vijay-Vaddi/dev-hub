@@ -4,6 +4,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .form import CustomUserCreationForm
+from django.contrib.auth.decorators import login_required
 
 def profiles(request):
     profiles = Profile.objects.all()
@@ -82,3 +83,12 @@ def logout_user(request):
      logout(request)
      messages.info(request, 'Logged out')
      return redirect('login')
+
+
+# user account page
+@login_required(login_url='login')
+def user_account(request):
+    # pass current user profile from request obj
+    profile = request.user.profile
+    context = {'profile': profile}
+    return render(request,'users/account.html', context)
