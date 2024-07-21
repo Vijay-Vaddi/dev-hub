@@ -15,4 +15,7 @@ class CustomUserCreationForm(UserCreationForm):
     
     # adding class to each field
         for name, field in self.fields.items():
+                print('name :',name, 'field :', field)
                 field.widget.attrs.update({'class':'input'})
+                field.help_text = None
+

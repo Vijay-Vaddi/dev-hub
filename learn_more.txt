@@ -32,10 +32,16 @@ caching
 
 -------------
 
-Forms
+FORMS
 
 Model form class Meta attributes:
 CSRF TOKEN 
+Learn form field structure 
+
+for name, field in self.fields.items():
+                field.widget.attrs.update({'class':'input'})
+                field.help_text = None
+whats in all this, in detail? 
 
 ------
 Request - response cycle for django 
@@ -47,3 +53,11 @@ Signals in depth
 ----------------
 
 whats in requst object?
+
+========
+
+    def __init__(self, *args, **kwargs):
+        super(CustomUserCreationForm, self).__init__(*args, **kwargs)
+
+Undertand this better. 
+
