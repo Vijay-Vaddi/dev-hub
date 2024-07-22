@@ -50,6 +50,7 @@ what does middlewares do in the cycle?
 ------------
 
 Signals in depth 
+Signals/models flow correctly. 
 ----------------
 
 whats in requst object?
@@ -60,4 +61,6 @@ whats in requst object?
         super(CustomUserCreationForm, self).__init__(*args, **kwargs)
 
 Undertand this better. 
+
+========
 

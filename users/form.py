@@ -24,4 +24,13 @@ class CustomUserCreationForm(UserCreationForm):
 class EditProfileForm(ModelForm):
     class Meta:
          model = Profile
-         exclude = ['user']
+         fields = ['name', 'username', 'email', 'location', 'short_intro', 'profile_image',
+                   'bio', 'social_github', 'social_twitter', 'social_linkedin',
+                   'social_website', 'social_youtube']
+         
+    def __init__(self, *args, **kwargs):
+         super(EditProfileForm, self).__init__(*args, **kwargs)
+
+         for name, field in self.fields.items():
+              field.widget.attrs.update({'class':'input'})
+              field.help_text = None

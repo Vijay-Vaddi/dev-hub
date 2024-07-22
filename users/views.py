@@ -69,7 +69,7 @@ def register_user(request):
 
             messages.success(request, 'User account created')
             login(request, user)
-            return redirect('profiles')
+            return redirect('edit_account')
         
         messages.error(request, 'Registration failed for some reason')
         return render(request,'users/login_register.html', {'form':form, 'page':page})
@@ -99,7 +99,7 @@ def user_account(request):
 def edit_account(request):
     # to edit logged in user, get user.profile from request
     profile = request.user.profile
-    form = EditProfileForm()
+    form = EditProfileForm(instance=profile)
     context = {'form': form}
     
     if request.method == 'POST':
@@ -108,5 +108,7 @@ def edit_account(request):
             profile = form.save(commit=False)
             profile.username = profile.username.lower()
             profile.save()
+
+            return redirect('user_account')
     
     return render(request, 'users/profile_form.html', context)
