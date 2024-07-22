@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Profile, User
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .form import CustomUserCreationForm
+from .form import CustomUserCreationForm, EditProfileForm
 from django.contrib.auth.decorators import login_required
 
 def profiles(request):
@@ -98,6 +97,16 @@ def user_account(request):
 
 @login_required(login_url='login')
 def edit_account(request):
-
-    context = {}
+    # to edit logged in user, get user.profile from request
+    profile = request.user.profile
+    form = EditProfileForm()
+    context = {'form': form}
+    
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.username = profile.username.lower()
+            profile.save()
+    
     return render(request, 'users/profile_form.html', context)

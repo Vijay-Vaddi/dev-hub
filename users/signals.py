@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save, post_delete 
 
-#signals receiver for post_save
+#signals receiver for profile post_save
 @receiver(post_save, sender=Profile)   
 def profile_updated(sender, instance, created, **kwargs):
     print('updated', instance)
@@ -17,13 +17,14 @@ def profile_updated(sender, instance, created, **kwargs):
         user.save()
 
 
+# singal for deleting user account when profile is deleted
 @receiver(post_delete, sender=Profile)
 def profile_deleted(sender, instance, **kwargs):
     print('Deleting user...')
     user = instance.user 
     user.delete()
 
-
+# signal for creating a profile when User is created. 
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
     print('New user detected, 12122 creating user profile...')
