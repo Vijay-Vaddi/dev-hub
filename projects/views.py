@@ -39,7 +39,13 @@ def create_project(request):
 # update project item
 @login_required(login_url='login')
 def update_project(request, pk):    
-    proj = Project.objects.get(id=pk)
+    # get logged in user
+    profile = request.user.profile
+    '''proj = Project.objects.get(id=pk) 
+    # this will make any logged in user edit with pk, so XX
+    '''
+    # query only in logged in users project_set
+    proj = profile.project_set.get(id=pk)
 
     # prefil form with proj obj to view in templates
     form = ProjectForm(instance=proj)
@@ -57,7 +63,9 @@ def update_project(request, pk):
 # delete project
 @login_required(login_url='login')
 def delete_project(request, pk):
-    proj = Project.objects.get(id=pk)
+    # check projects in logged in users proj set only
+    profile = request.user.profile
+    proj = profile.project_set.get(id=pk)
     context = {'object':proj}
     
     if request.method=='POST':
