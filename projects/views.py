@@ -20,13 +20,17 @@ def project(request, pk):
 # create project item view
 @login_required(login_url='login')
 def create_project(request):
-
+    # get owner of the project from profile 
+    profile = request.user.profile
     form = ProjectForm()
 
     if request.method == 'POST':
         form = ProjectForm(request.POST, request.FILES) 
         if form.is_valid():
-            form.save()
+            project = form.save(commit=False)
+            # add owner to project and then save
+            project.owner = profile
+            project.save()
         return redirect('index')
         
     context = {'form':form}
