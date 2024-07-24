@@ -128,5 +128,20 @@ def add_skill(request):
             skill.save()
             return redirect('user_account')
     context = {'form': form}
-    return render(request, 'users/add_skill.html', context)
+    return render(request, 'users/skill_form.html', context)
 
+@login_required(login_url='login')
+def update_skill(request, pk):
+    profile = request.user.profile
+    skill = profile.skill_set.get(id=pk)
+
+    form = AddSkillForm(instance = skill)
+    context = {'form': form}
+
+    if request.method == 'POST':
+        form = AddSkillForm(request.POST, instance = skill)
+        if form.is_valid():
+            form.save()
+            return redirect('user_account')
+
+    return render(request, 'users/skill_form.html', context)
