@@ -5,6 +5,7 @@ from django.contrib import messages
 from .form import CustomUserCreationForm, EditProfileForm, AddSkillForm
 from django.contrib.auth.decorators import login_required
 
+
 def profiles(request):
     profiles = Profile.objects.all()
     context = {'profiles':profiles}
@@ -108,7 +109,7 @@ def edit_account(request):
             profile = form.save(commit=False)
             profile.username = profile.username.lower()
             profile.save()
-
+            messages.success(request, 'Account edited')
             return redirect('user_account')
     
     return render(request, 'users/profile_form.html', context)
@@ -116,7 +117,6 @@ def edit_account(request):
 
 @login_required(login_url='login')
 def add_skill(request):
-
     form = AddSkillForm()
     profile = request.user.profile
     
@@ -126,6 +126,7 @@ def add_skill(request):
             skill = form.save(commit=False)
             skill.owner = profile
             skill.save()
+            messages.success(request, 'Skill added')
             return redirect('user_account')
     context = {'form': form}
     return render(request, 'users/skill_form.html', context)
@@ -134,14 +135,24 @@ def add_skill(request):
 def update_skill(request, pk):
     profile = request.user.profile
     skill = profile.skill_set.get(id=pk)
-
+    print(pk, skill)
     form = AddSkillForm(instance = skill)
     context = {'form': form}
-
+    print('form  --- ',form)
     if request.method == 'POST':
         form = AddSkillForm(request.POST, instance = skill)
+        print('form  --- ',form)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Skill updated')
             return redirect('user_account')
 
     return render(request, 'users/skill_form.html', context)
+
+@login_required(login_url='login')
+def delete_skill(request, pk):
+    profile = request.user.profile
+    skill = profile.skill_set.get(id=pk)
+    skill.delete()
+    messages.success(request, 'Skill deleted')
+    return redirect('user_account')
