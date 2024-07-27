@@ -55,7 +55,7 @@ def update_project(request, pk):
         form = ProjectForm(request.POST, request.FILES, instance=proj) 
         if form.is_valid():
             form.save()
-        return redirect('index')
+        return redirect('user_account')
         
     context = {'form':form}
     return render(request, 'projects/project_form.html', context)
