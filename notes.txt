@@ -70,3 +70,9 @@ Authentications
 Django maintains sessions in its db table, 
 does not delete info but erases from cookie after logout. 
 
+profiles = Profile.objects.filter(name__icontains=search_query)
+for one parameter search,
+profiles = Profile.objects.filter(name__icontains=search_query, short_intro__icontains=search_query)
+will not work cos this acts like AND logic. (learn more on this)
+
+so use Q - lookup
