@@ -16,10 +16,10 @@ def profiles(request):
     skills = Skill.objects.filter(name__iexact=search_query)
 
     # profiles = Profile.objects.all()
-    profiles = Profile.objects.filter(
+    profiles = Profile.objects.distinct().filter(
         Q(name__icontains=search_query) | 
         Q(short_intro__icontains=search_query) |
-        Q(skill__in=skills)) #can search in child object this way
+        Q(skill__in=skills)) #can search in child object this way, this will create ducplicates, so add distict
     context = {'profiles':profiles, 'search_query':search_query}
     return render(request, 'users/profiles.html', context)
 
