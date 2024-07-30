@@ -5,21 +5,10 @@ from django.contrib import messages
 from .form import CustomUserCreationForm, EditProfileForm, AddSkillForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from .utils import search_profiles
 
 def profiles(request):
-    search_query = ''
-
-    if request.GET.get('search_query'):
-        search_query = request.GET.get('search_query')  
-        print(search_query)
-    # to search by skills get the exact skills in while list first
-    skills = Skill.objects.filter(name__iexact=search_query)
-
-    # profiles = Profile.objects.all()
-    profiles = Profile.objects.distinct().filter(
-        Q(name__icontains=search_query) | 
-        Q(short_intro__icontains=search_query) |
-        Q(skill__in=skills)) #can search in child object this way, this will create ducplicates, so add distict
+    profiles, search_query = search_profiles(request)
     context = {'profiles':profiles, 'search_query':search_query}
     return render(request, 'users/profiles.html', context)
 
