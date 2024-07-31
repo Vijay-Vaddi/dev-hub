@@ -10,9 +10,14 @@ def projects(request):
 
     if request.GET.get('search_query'):
         search_query = request.GET.get('search_query')
-
-    projects = Project.objects.all()
-    context = {'projects': projects}
+    # Q(owner__name__icontains=search_query)
+    # can search by owner and then its child and what child contains
+    projects = Project.objects.filter(
+        Q(title__icontains=search_query) |
+        Q(description__icontains=search_query) |
+        Q(owner__name__icontains=search_query)
+    )
+    context = {'projects': projects, 'search_query': search_query }
 
     return render(request, 'projects/projects.html', context)
 

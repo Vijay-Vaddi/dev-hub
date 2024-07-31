@@ -67,3 +67,7 @@ Undertand this better.
 django-filter extension form YT
 
 
+=============
+# Q(owner__name__icontains=search_query)
+    # can search by owner and then its child and what child contains
+
