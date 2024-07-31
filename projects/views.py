@@ -15,7 +15,8 @@ def projects(request):
     projects = Project.objects.filter(
         Q(title__icontains=search_query) |
         Q(description__icontains=search_query) |
-        Q(owner__name__icontains=search_query)
+        Q(owner__name__icontains=search_query) |
+        Q(tags__name__icontains=search_query)
     )
     context = {'projects': projects, 'search_query': search_query }
 
