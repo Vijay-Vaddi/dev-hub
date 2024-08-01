@@ -3,23 +3,13 @@ from .models import Project, Tag
 from .forms import ProjectForm
 from django.contrib.auth.decorators import login_required 
 from django.db.models import Q
+from .utils import search_projects
 
 # view for all projects list
 def projects(request):
-    search_query = ''
-
-    if request.GET.get('search_query'):
-        search_query = request.GET.get('search_query')
-    # Q(owner__name__icontains=search_query)
-    # can search by owner and then its child and what child contains
-    # projects = Project.objects.all()
-    projects = Project.objects.distinct().filter(
-        Q(title__icontains=search_query) |
-        Q(description__icontains=search_query) |
-        Q(owner__name__icontains=search_query) |
-        Q(tags__name__icontains=search_query)
-    )
-
+    
+    projects, search_query = search_projects(request)
+    
     context = {'projects': projects, 'search_query': search_query }
 
     return render(request, 'projects/projects.html', context)
