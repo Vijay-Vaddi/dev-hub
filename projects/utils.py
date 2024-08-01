@@ -7,6 +7,8 @@ def search_projects(request):
     if request.GET.get('search_query'):
         search_query = request.GET.get('search_query')
     
+    # tags = Tag.objects.filter(name__icontains=search_query)
+    # Q(tags__in=tags)
     # Q(owner__name__icontains=search_query)
     # can search by owner and then its child and what child contains
     projects = Project.objects.distinct().filter(
