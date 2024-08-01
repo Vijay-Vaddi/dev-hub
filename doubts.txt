@@ -29,3 +29,10 @@ and when to use project.tags.all, diff ?
 
 signals users-profile creations path!!
 Understand clearly. 
+========
+diff between this and 
+        Q(tags__name__icontains=search_query)
+ tags = Tags.objects.filter(name__icontains=search_query)
+ Q(tags__in=tags)
+???
+
