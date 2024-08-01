@@ -27,6 +27,8 @@ class Project(models.Model):
     def __str__(self) -> str:
         return self.title
 
+    class Meta:
+        ordering = ['created_date_time'] #can add -ve sign to order by asc
 
 class Review(models.Model):
     # one-to-one with project table
