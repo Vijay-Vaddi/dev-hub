@@ -26,7 +26,8 @@ def projects(request):
         page_num = paginator.num_pages
         projects = paginator.page(page_num)
 
-    context = {'projects': projects, 'search_query': search_query }
+    context = {'projects': projects, 'search_query': search_query,
+                'paginator':paginator }
 
     return render(request, 'projects/projects.html', context)
 
