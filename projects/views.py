@@ -4,17 +4,24 @@ from .forms import ProjectForm
 from django.contrib.auth.decorators import login_required 
 from django.db.models import Q
 from .utils import search_projects
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 # view for all projects list
 def projects(request):
     
     projects, search_query = search_projects(request)
-    paginator = Paginator(projects, per_page=1)
-    page_num = 1
-    # page_num = request.GET.get('page_num')
+    paginator = Paginator(projects, per_page=4)
+    # page_num = 1
+    page_num = request.GET.get('page_num')
     # page_obj = paginator.get_page(page_num)
-    projects = paginator.page(page_num)
+    
+    try:
+        projects = paginator.page(page_num)
+    # if no page num is provided
+    except PageNotAnInteger:
+        page_num = 1
+        projects = paginator.page(page_num)
+
     context = {'projects': projects, 'search_query': search_query }
 
     return render(request, 'projects/projects.html', context)
