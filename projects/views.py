@@ -10,16 +10,20 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 def projects(request):
     
     projects, search_query = search_projects(request)
-    paginator = Paginator(projects, per_page=4)
+    paginator = Paginator(projects, per_page=3)
     # page_num = 1
     page_num = request.GET.get('page_num')
     # page_obj = paginator.get_page(page_num)
     
     try:
         projects = paginator.page(page_num)
-    # if no page num is provided
+    # if page_num is not provided
     except PageNotAnInteger:
         page_num = 1
+        projects = paginator.page(page_num)
+    # if page_num is out of range
+    except EmptyPage:
+        page_num = paginator.num_pages
         projects = paginator.page(page_num)
 
     context = {'projects': projects, 'search_query': search_query }
