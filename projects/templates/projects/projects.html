@@ -55,6 +55,8 @@
       </div>
     </section>
 
+    <!-- to hide pagination if only one page exists -->
+    {% if projects.has_other_pages %}
     <div class="pagination">
       <ul class="container">
 
@@ -62,7 +64,7 @@
         {% if projects.has_previous %}
         <li><a href="?page={{ projects.previous_page_number }}" class="btn">&#10094; Prev</a></li>
         {% endif %}
-        {% for page_num in paginator.page_range %}
+        {% for page_num in custom_range %}
             {% if page_num == projects.number %}
             
               <li><a href="?page={{page_num}}" class="btn page-link btn--sub">{{page_num}}</a></li>
@@ -75,6 +77,7 @@
         {% endif %}
       </ul>
     </div>
+    {% endif %}
   </main>
 
     {% endblock %}
