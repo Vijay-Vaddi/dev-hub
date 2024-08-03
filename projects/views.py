@@ -12,7 +12,7 @@ def projects(request):
     projects, search_query = search_projects(request)
     paginator = Paginator(projects, per_page=3)
     # page_num = 1
-    page_num = request.GET.get('page_num')
+    page_num = request.GET.get('page')
     # page_obj = paginator.get_page(page_num)
     
     try:

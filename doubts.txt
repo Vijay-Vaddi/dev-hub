@@ -36,3 +36,6 @@ diff between this and
  Q(tags__in=tags)
 ???
 
+{% endfor %} - doesnt work
+{% endfor % } - works 
+{ % endfor % } - works... why? 
