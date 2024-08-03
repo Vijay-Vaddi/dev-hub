@@ -17,3 +17,4 @@ def search_profiles(request):
         Q(skill__in=skills)) #can search in child object this way, this will create ducplicates, so add distict
 
     return profiles, search_query
+
