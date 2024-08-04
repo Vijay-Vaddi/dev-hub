@@ -37,15 +37,18 @@ class Review(models.Model):
         ('down', 'Down Vote')
     )
 
-    # owner of review
+    owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, 
                           editable=False, unique=True)
-    
-    project = models.ForeignKey(Project, on_delete=models.CASCADE)
     body = models.TextField(null=True, blank=True)
     value = models.CharField(max_length=100, choices=VOTE_TYPE)
     date_time = models.DateTimeField(auto_now_add=True)
     
+    # to ensure one user can only leave one review per project
+    class Meta:
+        unique_together = [['owner', 'project']]
+
     def __str__(self) -> str:
         return self.value
     

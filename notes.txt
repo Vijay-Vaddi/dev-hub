@@ -76,3 +76,8 @@ profiles = Profile.objects.filter(name__icontains=search_query, short_intro__ico
 will not work cos this acts like AND logic. (learn more on this)
 
 so use Q - lookup
+
+===========
+reviews, 
+
+
