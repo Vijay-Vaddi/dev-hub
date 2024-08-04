@@ -4,9 +4,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from .form import CustomUserCreationForm, EditProfileForm, AddSkillForm
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
 from .utils import search_profiles, profiles_pagination
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def profiles(request):
     profiles, search_query = search_profiles(request)

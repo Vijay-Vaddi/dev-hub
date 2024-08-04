@@ -20,3 +20,23 @@
     </div>
     {% endif %}
  
+<script type="text/javascript"> 
+  // get search form and page links
+  let search_form = document.getElementById('search_form');
+  let page_links = document.getElementsByClassName('btn page-link');
+
+  console.log(search_form, page_links);
+  // ensure search form exists
+  if(search_form){
+    console.log('inside if')
+    for(let i=0; i < page_links.length; i++){
+      
+      page_links[i].addEventListener('click',(e)=>{
+        e.preventDefault()
+        console.log('Button clicked');
+      })
+
+    }
+  }
+
+</script>
