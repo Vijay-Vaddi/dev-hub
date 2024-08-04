@@ -46,14 +46,15 @@ class Review(models.Model):
     date_time = models.DateTimeField(auto_now_add=True)
     
     # to ensure one user can only leave one review per project
-    class Meta:
-        unique_together = [['owner', 'project']]
+    
 
     def __str__(self) -> str:
         return self.value
     
     class Meta:
         ordering = ['date_time']
+        unique_together = [['owner', 'project']]
+        # upgrate it to newer viewsion using unique constraints
 
 class Tag(models.Model):
     # many-many with project table

@@ -79,3 +79,17 @@ def delete_project(request, pk):
         return redirect('user_account')
     
     return render(request, 'projects/delete_object.html', context)
+
+
+@login_required(login_url='login')
+def add_review(request, project_id):
+    project = Project.objects.get(id=project_id)
+    profile = request.user.profile
+
+    # check if project isnt logged in user's
+    if project.owner == profile:
+        return 'cant add review to own projects!!'
+    
+    if request.method == 'POST':
+        pass
+        # add logic for saving review form
