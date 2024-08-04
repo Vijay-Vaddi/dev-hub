@@ -1,0 +1,22 @@
+
+    <!-- to hide pagination if only one page exists -->
+    {% if query_set.has_other_pages %}
+    <div class="pagination">
+      <ul class="container">
+        {% if query_set.has_previous %}
+        <li><a href="?page={{ query_set.previous_page_number }}" class="btn">&#10094; Prev</a></li>
+        {% endif %}
+        {% for page_num in custom_range %}
+            {% if page_num == query_set.number %}     
+              <li><a href="?page={{page_num}}" class="btn page-link btn--sub">{{page_num}}</a></li>
+              {% else %}
+              <li><a href="?page={{page_num}}" class="btn page-link ">{{page_num}}</a></li>
+            {% endif %}
+        {% endfor %}
+        {% if query_set.has_next  %}
+        <li><a href="?page={{query_set.next_page_number }}" class="btn page-link">Next &#10095;</a></li>
+        {% endif %}
+      </ul>
+    </div>
+    {% endif %}
+ 

@@ -39,3 +39,11 @@ diff between this and
 {% endfor %} - doesnt work
 {% endfor % } - works 
 { % endfor % } - works... why? 
+something weird here. check it again. 
+========
+
+{% include 'pagination.html' with query_set = projects %}
+space before and after = isnt working, but query_set=projects is working. ??
+
+==========
+
