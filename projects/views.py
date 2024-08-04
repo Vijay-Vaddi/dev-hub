@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from .models import Project, Tag
-from .forms import ProjectForm
+from .forms import ProjectForm, ReviewForm
 from django.contrib.auth.decorators import login_required 
 from django.db.models import Q
 from .utils import search_projects, paginate_projects
+from django.contrib import messages
+from django.db import IntegrityError
 
 # view for all projects list
 def projects(request):
@@ -19,7 +21,21 @@ def projects(request):
 # view for single project item
 def project(request, pk): 
     project = Project.objects.get(id=pk)
-    context = {'project':project}
+    form = ReviewForm()
+    print(form.fields['value'].label)
+    print(form.fields['body'].label)
+    try:
+        if request.method == 'POST':
+            form = ReviewForm(request.POST)
+            review = form.save(commit=False)
+            review.project = project
+            review.owner = request.user.profile
+            review.save()
+            messages.success(request, 'Review submitted')
+    except IntegrityError:
+        messages.error(request, 'Can not submit review again')
+    
+    context = {'project':project, 'form':form}
 
     return render(request, 'projects/single_project.html', context)
 
@@ -81,15 +97,16 @@ def delete_project(request, pk):
     return render(request, 'projects/delete_object.html', context)
 
 
-@login_required(login_url='login')
-def add_review(request, project_id):
-    project = Project.objects.get(id=project_id)
-    profile = request.user.profile
+# @login_required(login_url='login')
+# def add_review(request, project_id):
+#     project = Project.objects.get(id=project_id)
+#     profile = request.user.profile
 
-    # check if project isnt logged in user's
-    if project.owner == profile:
-        return 'cant add review to own projects!!'
+
+#     # check if project isnt logged in user's
+#     if project.owner == profile:
+#         return 'cant add review to own projects!!'
     
-    if request.method == 'POST':
-        pass
-        # add logic for saving review form
+#     if request.method == 'POST':
+#         pass
+#         # add logic for saving review form
