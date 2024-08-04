@@ -27,6 +27,9 @@ class  Profile(models.Model):
     def __str__(self) -> str:
         return str(self.username) 
     
+    class Meta:
+        ordering = ['created_date_time']
+            
 
 class Skill(models.Model):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, 
