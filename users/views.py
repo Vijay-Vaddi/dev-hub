@@ -54,7 +54,7 @@ def login_user(request):
         if user is not None:
                 login(request, user)
                 messages.info(request, 'Logged in')    
-                return redirect('profiles')
+                return redirect(request.GET['next'] if request.GET else 'user_account')
         else:
             messages.error(request, 'username or password is incorrect')
     return render(request, 'users/login_register.html', context)

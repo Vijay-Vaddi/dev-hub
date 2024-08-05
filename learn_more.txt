@@ -85,5 +85,9 @@ https://docs.djangoproject.com/en/5.0/topics/performance/
 learn this query
 reviewers = self.review_set.all().value_list('owner__id', flat=True)
 
+{% url 'login' %}
+
+why clear this from login actions? for redirecting to work 
+
 
 
