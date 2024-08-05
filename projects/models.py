@@ -27,6 +27,7 @@ class Project(models.Model):
     def __str__(self) -> str:
         return self.title
 
+    # to calculate vote total and vote ratio
     @property
     def get_vote_count(self):
         reviews = self.review_set.all()
@@ -37,6 +38,13 @@ class Project(models.Model):
         self.vote_total = total_votes
         self.vote_ratio = ratio
         self.save()
+
+    # get all list of reviewers ID, flat will turn obj into true list
+    @property
+    def reviewers(self):
+        reviewers = self.review_set.all().values_list('owner__id', flat=True)
+        print(reviewers)
+        return reviewers
 
     class Meta:
         # ordering = ['created_date_time'] #can add -ve sign to order by asc

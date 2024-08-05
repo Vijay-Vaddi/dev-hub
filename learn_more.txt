@@ -80,4 +80,10 @@ Read django pagination docs
 https://docs.djangoproject.com/en/5.0/topics/performance/
 
 ========
-@property
+@property??
+
+learn this query
+reviewers = self.review_set.all().value_list('owner__id', flat=True)
+
+
+

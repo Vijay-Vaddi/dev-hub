@@ -39,7 +39,8 @@ def project(request, pk):
             return redirect('project', pk=project.id)
     except IntegrityError:
         messages.error(request, 'Can not submit review again')
-        messages.success(request, 'Review submitted')
+    
+    print(project.reviewers)
 
     context = {'project':project, 'form':form}
 
