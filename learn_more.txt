@@ -78,3 +78,6 @@ Paginations
 Read django pagination docs 
 
 https://docs.djangoproject.com/en/5.0/topics/performance/
+
+========
+@property

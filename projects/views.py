@@ -31,10 +31,16 @@ def project(request, pk):
             review.project = project
             review.owner = request.user.profile
             review.save()
+            
+            # update vote count, this will run the get_vote_count and update it
+            project.get_vote_count
+
             messages.success(request, 'Review submitted')
+            return redirect('project', pk=project.id)
     except IntegrityError:
         messages.error(request, 'Can not submit review again')
-    
+        messages.success(request, 'Review submitted')
+
     context = {'project':project, 'form':form}
 
     return render(request, 'projects/single_project.html', context)

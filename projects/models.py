@@ -27,8 +27,20 @@ class Project(models.Model):
     def __str__(self) -> str:
         return self.title
 
+    @property
+    def get_vote_count(self):
+        reviews = self.review_set.all()
+        up_votes = reviews.filter(value='up').count()
+        total_votes = reviews.count()
+        ratio = (up_votes/total_votes)*100
+        
+        self.vote_total = total_votes
+        self.vote_ratio = ratio
+        self.save()
+
     class Meta:
-        ordering = ['created_date_time'] #can add -ve sign to order by asc
+        # ordering = ['created_date_time'] #can add -ve sign to order by asc
+        ordering = ['-vote_ratio','-vote_total', 'title']
 
 class Review(models.Model):
     # one-to-one with project table
