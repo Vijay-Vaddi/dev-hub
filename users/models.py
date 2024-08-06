@@ -43,4 +43,29 @@ class Skill(models.Model):
     def __str__(self) -> str:
         return str(self.name)
 
+
+class Message(models.Model):
+    '''on delete keep messages but set sender to null
+    sender may not have prof, but will have to add name, email
+    blank=true form can be submitted without a sender
+    related_name is going to connect prof to messages,
+    '''
+    sender = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True)
+    recipient = models.ForeignKey(Profile, on_delete=models.SET_NULL, 
+                                  null=True, blank=True, related_name='messages')
+    name = models.CharField(max_length=200, null=True, blank=True)
+    email = models.EmailField(max_length=200, null=True, blank=True)
+    subject = models.CharField(max_length=200, null=True, blank=True)
+    body = models.TextField()
+    is_read = models.BooleanField(default=False, null=True)
+    created_date_time = models.DateTimeField(auto_now_add=True)
+    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True,
+                          editable=False)
+    
+    def __str__(self) -> str:
+        return self.subject
+    
+    class Meta:
+        # order by unread messages, and then message time
+        ordering = ['is_read', '-created_date_time' ]
  

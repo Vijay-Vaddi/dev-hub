@@ -39,7 +39,7 @@ def login_user(request):
          return redirect('profiles') 
 
     if request.method == 'POST':
-        username = request.POST['username']
+        username = request.POST['username'].lower()
         password = request.POST['password']
 
         # check if user exists
