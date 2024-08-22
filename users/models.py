@@ -46,9 +46,9 @@ class Skill(models.Model):
 
 class Message(models.Model):
     '''on delete keep messages but set sender to null
-    sender may not have prof, but will have to add name, email
+    sender may not have profile, but will have to add name, email
     blank=true form can be submitted without a sender
-    related_name is going to connect prof to messages,
+    related_name is going to connect profile to messages,
     '''
     sender = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True)
     recipient = models.ForeignKey(Profile, on_delete=models.SET_NULL, 
