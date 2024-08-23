@@ -140,13 +140,10 @@ def add_skill(request):
 def update_skill(request, pk):
     profile = request.user.profile
     skill = profile.skill_set.get(id=pk)
-    print(pk, skill)
     form = AddSkillForm(instance = skill)
     context = {'form': form}
-    print('form  --- ',form)
     if request.method == 'POST':
         form = AddSkillForm(request.POST, instance = skill)
-        print('form  --- ',form)
         if form.is_valid():
             form.save()
             messages.success(request, 'Skill updated')
@@ -191,9 +188,29 @@ def view_message(request, pk):
 
     return render(request, 'users/message.html', context)
 
-def send_message(request):
-
+def send_message(request, pk):
+    recipient = Profile.objects.get(id=pk)
     form = MessageForm()
+    context = {'form':form, 'recipient':recipient}
 
-    context = {'form':form}
+    # check if user is logged in and assign to sender
+    try:
+        sender = request.user.profile
+    except:
+        sender=None
+
+    if request.method == 'POST':
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.recipient = recipient
+            message.sender = sender
+            
+            # if a user is logged in, pass name and email
+            if sender:
+                message.name = sender.name
+                message.email = sender.email
+            form.save()
+            messages.success(request, 'Message sent!')
+            return redirect('user_profile', pk=pk)
     return render(request, 'users/send_message.html', context)

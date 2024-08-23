@@ -3,18 +3,28 @@
 <main class="formPage my-xl">
         <div class="content-box">
             <div class="formWrapper">
-                <a class="backButton" href="#"><i class="im im-angle-left"></i></a>
+                <a class="backButton" href="{% url 'user_profile' recipient.id %}"><i class="im im-angle-left"></i></a>
                 <br>
-                <form class="form" method="POST" action="{% url 'send_message' %}">
+                <form class="form" method="POST" action="{% url 'send_message' recipient.id %}">
                     {% csrf_token %}
+
+                    {% if not request.user.is_authenticated %}
                     {% for field in form %}
                     <div class="form__field">
                        {{field.as_field_group}}
-                        <!-- <label for="formInput#text">Text Field: </label>
-                        <input class="input input--text" id="formInput#text" type="text" name="text"
-                            placeholder="Enter text" /> -->
                     </div>
                     {% endfor %}
+                    {% else %}
+                    <div class="form__field">
+                        <label for="formInput#text">{{form.subject.label}}</label>
+                        {{form.subject}}
+                    </div>
+                    <div class="form__field">
+                        <label for="formInput#text">{{form.body.label}}</label>
+                        {{form.body}}
+                    </div>
+                    {% endif %}
+
                     <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
                 </form>
             </div>
