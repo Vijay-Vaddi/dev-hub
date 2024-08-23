@@ -91,5 +91,10 @@ why clear this from login actions? for redirecting to work
 
 models - relationships access and queries, whats what. 
 
+=================
+EMAILs:
+
+Read Docs 
+
 
 
