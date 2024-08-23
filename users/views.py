@@ -177,3 +177,23 @@ def inbox(request):
     unread_count = inbox_items.filter(is_read=False).count()
     context = {'inbox':inbox_items, 'unread_count':unread_count}
     return render(request, 'users/inbox.html', context)
+
+@login_required(login_url='login')
+def view_message(request, pk):
+    profile = request.user.profile
+    msg = profile.messages.get(id=pk)
+    # this way anyone can see message by passing pk
+    # msg = Message.objects.get(id=pk) #dont use this
+    if not msg.is_read: 
+        msg.is_read = True
+        msg.save()
+    context = {'msg':msg}
+
+    return render(request, 'users/message.html', context)
+
+def send_message(request):
+
+    form = MessageForm()
+
+    context = {'form':form}
+    return render(request, 'users/send_message.html', context)
