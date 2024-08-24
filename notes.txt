@@ -80,4 +80,15 @@ so use Q - lookup
 ===========
 reviews, 
 
+========
+
+Password reset. 
+
+Use built in stuff for password reset functions
+django.contrib. auth.urls has many url patterns 
+including login/logout, but use individually so that there's no clash 
+between custom login/logout. might break some stuff as well. 
+
+once password reset view is set, every other views in reset password cycle 
+has to be working or it'll throw error.  
 

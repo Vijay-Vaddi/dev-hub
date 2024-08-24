@@ -24,6 +24,7 @@ def profile_deleted(sender, instance, **kwargs):
     user = instance.user 
     user.delete()
 
+
 # signal for creating a profile when User is created. 
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
