@@ -97,7 +97,15 @@ API
 
 LEARN diff between just an api and REST api. 
 
+Serializing ManyToOne (Foreign Key) and many to many, one to many
+if the model has attribute and the relationship is defined in that model    
+    for example ForeignKey and ManyToMany, (its like a child) of another model 
+    owner = ForeignKey(Profile) then can directly serialize 
+    works for manytomany as well
 
+else 
+    user serializerMethod and use the method to get and serialize items. 
+    
 
 
 

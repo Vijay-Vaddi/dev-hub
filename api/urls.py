@@ -6,3 +6,4 @@ urlpatterns = [
     path('projects/',views.get_projects, name='get_projects'),
     path('projects/<str:pk>/',views.get_project, name='get_projects'),
 ]
+
