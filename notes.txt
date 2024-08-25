@@ -92,3 +92,12 @@ between custom login/logout. might break some stuff as well.
 once password reset view is set, every other views in reset password cycle 
 has to be working or it'll throw error.  
 
+==========
+API
+
+LEARN diff between just an api and REST api. 
+
+
+
+
+
