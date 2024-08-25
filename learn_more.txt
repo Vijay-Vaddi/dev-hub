@@ -96,5 +96,9 @@ EMAILs:
 
 Read Docs 
 
+====
+DRF read docs and go through tutorials 
+
+
 
 
