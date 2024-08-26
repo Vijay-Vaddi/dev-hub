@@ -1,5 +1,6 @@
 from django.http import JsonResponse
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from .serializers import ProjectSerializer
 from projects.models import Project
@@ -19,7 +20,9 @@ def get_routes(request):
     return Response(routes)
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def get_projects(request):
+    print("USER", request.user)
     projects = Project.objects.all()
     # to serialize many objects set many=True, False for single obj
     serializer = ProjectSerializer(projects, many=True)
@@ -28,6 +31,7 @@ def get_projects(request):
 
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def get_project(request, pk):
     project = Project.objects.get(id=pk)
     # to serialize many objects set many=True, False for single obj

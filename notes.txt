@@ -105,7 +105,12 @@ if the model has attribute and the relationship is defined in that model
 
 else 
     user serializerMethod and use the method to get and serialize items. 
-    
+
+===
+
+For authentications and authorization, can use session ids in theory
+but token are better. (learn more)
+use djangos simple jwt 
 
 
 
