@@ -112,5 +112,7 @@ For authentications and authorization, can use session ids in theory
 but token are better. (learn more)
 use djangos simple jwt 
 
+read customizing token in simple jwt
+
 
 
