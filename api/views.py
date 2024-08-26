@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from .serializers import ProjectSerializer
-from projects.models import Project
+from projects.models import Project, Review
 
 # document like API to see all available endpoints
 @api_view(['GET'])
@@ -18,6 +18,7 @@ def get_routes(request):
     ]
     
     return Response(routes)
+
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -37,4 +38,23 @@ def get_project(request, pk):
     # to serialize many objects set many=True, False for single obj
     serializer = ProjectSerializer(project, many=False)
     
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def project_vote(request, pk):
+    project = Project.objects.get(id=pk)
+    # coming from token auth, not session
+    user = request.user.profile
+    # .data is available due to @api_view making it rest
+    data = request.data
+
+    review, created = Review.objects.get_or_create(
+        owner=user,
+        project=project, 
+        value = data['value'],
+    )
+    serializer = ProjectSerializer(project, many=False)
+
     return Response(serializer.data)
