@@ -20,6 +20,7 @@ class ReviewSerializer(serializers.ModelSerializer):
         model = Review
         fields = '__all__'
 
+    # owner = ProfileSerializer(many=False)
 
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:

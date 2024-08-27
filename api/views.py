@@ -53,8 +53,12 @@ def project_vote(request, pk):
     review, created = Review.objects.get_or_create(
         owner=user,
         project=project, 
-        value = data['value'],
     )
+
+    review.value = data['value']
+    review.save()
+    project.get_vote_count
+    
     serializer = ProjectSerializer(project, many=False)
 
     return Response(serializer.data)
