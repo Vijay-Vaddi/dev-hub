@@ -114,5 +114,9 @@ use djangos simple jwt
 
 read customizing token in simple jwt
 
+---
 
+Have to setup cors 
+
+set up another app in vs code to test api
 
