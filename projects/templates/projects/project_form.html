@@ -6,9 +6,8 @@
     <main class="formPage my-xl">
         <div class="content-box">
             <div class="formWrapper">
-                <a class="backButton" href="#"><i class="im im-angle-left"></i></a>
+                <a class="backButton" href="{% url 'user_account' %}"><i class="im im-angle-left"></i></a>
                 <br>
-
                 <form class="form" method="POST" action="" enctype="multipart/form-data">
                     {%csrf_token%}
                     <!-- Input:Text -->
@@ -20,7 +19,7 @@
                     {% endfor %}
                     
                     <div class="form__field">
-                        <label for="formInput#text">Tags</label>
+                        <label for="formInput#text">Tags (for eg, Html, React, Python etc....)</label>
                         <textarea name="new_tags" class="input" placeholder="Add tags"></textarea>>
                     </div>
                     

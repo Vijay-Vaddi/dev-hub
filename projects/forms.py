@@ -9,7 +9,7 @@ class ProjectForm(ModelForm):
         model = Project
         # fields = '__all__'
         # exclude = ('vote_ratio','vote_total') #[]
-        fields = [ 'title', 'description', 'tags', 'demo_link',
+        fields = [ 'title', 'description', 'demo_link',
                    'source_code', 'project_image'
         ]
 

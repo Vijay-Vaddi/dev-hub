@@ -54,12 +54,20 @@ def create_project(request):
     form = ProjectForm()
 
     if request.method == 'POST':
+        new_tags = request.POST.get('new_tags').replace(',', ' ').title().split()
+
         form = ProjectForm(request.POST, request.FILES) 
         if form.is_valid():
             project = form.save(commit=False)
             # add owner to project and then save
             project.owner = profile
             project.save()
+            
+            # add tags to project
+            for tag in new_tags:
+                tag, created = Tag.objects.get_or_create(name=tag)
+                project.tags.add(tag)
+
         return redirect('user_account')
         
     context = {'form':form}
