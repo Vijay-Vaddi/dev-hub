@@ -21,9 +21,12 @@ def profile_updated(sender, instance, created, **kwargs):
 # singal for deleting user account when profile is deleted
 @receiver(post_delete, sender=Profile)
 def profile_deleted(sender, instance, **kwargs):
-    user = instance.user 
-    user.delete()
-
+    # if trying to delete user first, prof del will trigger user delete again, so try catch
+    try:
+        user = instance.user 
+        user.delete()
+    except: 
+        pass
 
 # signal for creating a profile when User is created. 
 @receiver(post_save, sender=User)
