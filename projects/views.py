@@ -80,10 +80,17 @@ def update_project(request, pk):
     form = ProjectForm(instance=proj)
 
     if request.method == 'POST':
+        new_tags = request.POST.get('new_tags').replace(',', ' ').title().split()
+        
         # pass the second param instance=proj to let it know what proj to update
         form = ProjectForm(request.POST, request.FILES, instance=proj) 
         if form.is_valid():
-            form.save()
+            project = form.save()
+
+            for tag in new_tags:
+                tag, created = Tag.objects.get_or_create(name=tag)
+                project.tags.add(tag)
+
         return redirect('user_account')
         
     context = {'form':form}

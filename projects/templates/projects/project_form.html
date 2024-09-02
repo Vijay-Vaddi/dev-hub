@@ -16,11 +16,15 @@
                     <div class="form__field">
                         <label for="formInput#text">{{field.label}}</label>
                         {{field}}
-                        <!-- <input class="input input--text" id="formInput#text" type="text" name="text"
-                            placeholder="Enter text" /> -->
-                    </div>
+                        </div>
                     {% endfor %}
-        
+                    
+                    <div class="form__field">
+                        <label for="formInput#text">Tags</label>
+                        <textarea name="new_tags" class="input" placeholder="Add tags"></textarea>>
+                    </div>
+                    
+                        
                     <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
                 </form>
             </div>
