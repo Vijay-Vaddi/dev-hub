@@ -46,6 +46,14 @@ class Project(models.Model):
         print(reviewers)
         return reviewers
 
+    @property
+    def image_url(self):
+        try:
+            url = self.project_image.url
+        except:
+            url = ' '
+        return url
+
     class Meta:
         # ordering = ['created_date_time'] #can add -ve sign to order by asc
         ordering = ['-vote_ratio','-vote_total', 'title']
