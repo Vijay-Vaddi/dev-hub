@@ -63,14 +63,30 @@ def project_vote(request, pk):
 
     return Response(serializer.data)
 
+# @api_view(['DELETE'])
+# @permission_classes([IsAuthenticated])
+# def delete_tags(request, proj_pk, tag_pk):
+#     profile = request.user.profile
+#     proj = profile.project_set.get(id=proj_pk)
+
+#     tag = proj.tags.get(id=tag_pk)
+
+#     tag.delete()
+
+#     return Response('Tag was deleted')
+
+
+
 @api_view(['DELETE'])
-@permission_classes([IsAuthenticated])
-def delete_tags(request, proj_pk, tag_pk):
+# @permission_classes([IsAuthenticated])
+def delete_tags(request):
     profile = request.user.profile
-    proj = profile.project_set.get(id=proj_pk)
+    proj_id = request.data['proj_id']
+    tag_id = request.data['tag_id']
 
-    tag = proj.tags.get(id=tag_pk)
+    proj = profile.project_set.get(id=proj_id)
+    tag = proj.tags.get(id=tag_id)
+    proj.tags.remove(tag)
+    # tag.delete() 
 
-    tag.delete()
-
-    return Response('Tag was deleted')
+    return Response({'Tag was deleted'})

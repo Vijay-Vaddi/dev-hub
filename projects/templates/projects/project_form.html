@@ -47,8 +47,23 @@
             let tag_id = e.target.dataset.tag
             let project_id = e.target.dataset.project
             console.log('tag id',tag_id, project_id)
-        })
 
+            fetch('http://127.0.0.1:8000/api/remove-tag/', {
+                method:'DELETE',
+                headers:{
+                    'Content-type':'application/json'
+                },
+                body:JSON.stringify({'proj_id':project_id, 
+                                        'tag_id':tag_id})
+            })
+            .then(response => response.json())
+            .then(data => {
+                e.target.remove()
+
+            })
+
+
+        })
     }
 
 </script>
