@@ -2,8 +2,7 @@
 {% load static %}
 {% block content %}
 
-    <!-- Main Section -->
-    <main class="formPage my-xl">
+<main class="formPage my-xl">
         <div class="content-box">
             <div class="formWrapper">
                 <a class="backButton" href="{% url 'user_account' %}"><i class="im im-angle-left"></i></a>
@@ -19,10 +18,16 @@
                     {% endfor %}
                     
                     <div class="form__field">
-                        <label for="formInput#text">Tags (for eg, Html, React, Python etc....)</label>
-                        <textarea name="new_tags" class="input" placeholder="Add tags"></textarea>>
+                        {% for tag in project.tags.all %}
+                            <div class="project-tag tag tag--pill tag--main" 
+                                data-tag="{{tag.id}}" data-project="{{project.id}}">{{tag.name}} &#215;</div>
+                        {% endfor %}
                     </div>
-                    
+
+                    <div class="form__field">
+                        <label for="formInput#text">Tags (for eg, Html, React, Python etc....)</label>
+                        <textarea name="new_tags" class="input" placeholder="Add tags"></textarea>
+                    </div>
                         
                     <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
                 </form>
@@ -30,4 +35,22 @@
         </div>
     </main>
 
-    {% endblock %}
+<script>
+    // get the tags
+    let tags = document.getElementsByClassName('project-tag');
+    console.log(tags)
+
+    // add event listeners to tags
+    for (let i=0; i<tags.length; i++){
+        tags[i].addEventListener('click', (e) =>{
+            // get clicked ids of tag/project
+            let tag_id = e.target.dataset.tag
+            let project_id = e.target.dataset.project
+            console.log('tag id',tag_id, project_id)
+        })
+
+    }
+
+</script>
+
+{% endblock %}

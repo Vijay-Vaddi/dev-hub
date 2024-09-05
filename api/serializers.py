@@ -8,7 +8,7 @@ class ProfileSerializer(serializers.ModelSerializer):
         model = Profile
         fields = '__all__'
 
-
+ 
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag

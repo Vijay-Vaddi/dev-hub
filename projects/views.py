@@ -101,7 +101,7 @@ def update_project(request, pk):
 
         return redirect('user_account')
         
-    context = {'form':form}
+    context = {'form':form, 'project':proj}
     return render(request, 'projects/project_form.html', context)
 
 # delete project
