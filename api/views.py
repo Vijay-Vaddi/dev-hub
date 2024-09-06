@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from .serializers import ProjectSerializer
-from projects.models import Project, Review
+from projects.models import Project, Review, Tag
 
 # document like API to see all available endpoints
 @api_view(['GET'])
@@ -63,30 +63,22 @@ def project_vote(request, pk):
 
     return Response(serializer.data)
 
-# @api_view(['DELETE'])
-# @permission_classes([IsAuthenticated])
-# def delete_tags(request, proj_pk, tag_pk):
-#     profile = request.user.profile
-#     proj = profile.project_set.get(id=proj_pk)
-
-#     tag = proj.tags.get(id=tag_pk)
-
-#     tag.delete()
-
-#     return Response('Tag was deleted')
-
-
 
 @api_view(['DELETE'])
 # @permission_classes([IsAuthenticated])
 def delete_tags(request):
-    profile = request.user.profile
-    proj_id = request.data['proj_id']
-    tag_id = request.data['tag_id']
+    print(request.user)
 
-    proj = profile.project_set.get(id=proj_id)
-    tag = proj.tags.get(id=tag_id)
-    proj.tags.remove(tag)
+    project = Project.objects.get(id=request.data['project_id'])
+    tag = project.tags.get(id=request.data['tag_id'])
+
+    # profile = request.user.profile
+    # proj_id = request.data['proj_id']
+    # tag_id = request.data['tag_id']
+
+    # proj = profile.project_set.get(id=proj_id)
+    # tag = proj.tags.get(id=tag_id)
+    project.tags.remove(tag)
     # tag.delete() 
 
     return Response({'Tag was deleted'})
