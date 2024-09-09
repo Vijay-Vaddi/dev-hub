@@ -95,7 +95,7 @@ from keys import password
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'devsearch',
+        'NAME': 'devhub',
         'USER': 'vijayvaddi',
         'PASSWORD': password,
         'HOST':'database-1.cd8ws0qy6eru.eu-north-1.rds.amazonaws.com',
