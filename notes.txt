@@ -120,3 +120,11 @@ Have to setup cors
 
 set up another app in vs code to test api
 
+AWS set up
+: create account, set up rds postres, s3 buckets
+add s3 bucket policy for public access for images 
+add aws user id and pass to settings.py and connect to postgres sql 
+
+lookup django storages 
+pip install django storages and boto3, 
+add storages to settings

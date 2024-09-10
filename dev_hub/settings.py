@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'rest_framework',
     'corsheaders',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -215,3 +216,13 @@ SIMPLE_JWT = {
 # to allow requests from all domains/servers, making it open 
 CORS_ALLOW_ALL_ORIGINS = True
  
+# aws s3 buckets
+
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.s3.S3Storage",
+        "OPTIONS": {
+        #   ...your_options_here
+        },
+    },
+}
