@@ -90,14 +90,13 @@ WSGI_APPLICATION = 'dev_hub.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-from keys import password
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'devhub',
         'USER': 'vijayvaddi',
-        'PASSWORD': password,
+        'PASSWORD': env.password_aws,
         'HOST':'database-1.cd8ws0qy6eru.eu-north-1.rds.amazonaws.com',
         'PORT':'5432', 
     }
