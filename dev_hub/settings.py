@@ -217,12 +217,22 @@ SIMPLE_JWT = {
 CORS_ALLOW_ALL_ORIGINS = True
  
 # aws s3 buckets
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_ACCESS_KEY_ID = env.aws_access_key
+AWS_SECRET_ACCESS_KEY = env.aws_secret_access_key
+AWS_STORAGE_BUCKET_NAME = 'django-devhub-bucket'
+AWS_QUERYSTRING_AUTH = False
+AWS_S3_FILE_OVERWRITE = False
 
 STORAGES = {
     "default": {
-        "BACKEND": "storages.backends.s3.S3Storage",
+        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
         "OPTIONS": {
-        #   ...your_options_here
+            'bucket_name':AWS_STORAGE_BUCKET_NAME,
+            "signature_version": 's3v4',
         },
     },
+    "staticfiles":{
+        "BACKEND":'django.contrib.staticfiles.storage.StaticFilesStorage'},
+
 }
