@@ -7,7 +7,7 @@ __pycache__/
 *.so
 
 env.py
-
+*.env
 keys.py
 
 # Distribution / packaging

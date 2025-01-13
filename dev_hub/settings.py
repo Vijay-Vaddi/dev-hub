@@ -11,12 +11,15 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-import env
+from dotenv import load_dotenv
 from datetime import timedelta
 import os
 
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / '.env')
 
 
 # Quick-start development settings - unsuitable for production
@@ -84,7 +87,7 @@ WSGI_APPLICATION = 'dev_hub.wsgi.application'
 
 
 # Database
-https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -235,5 +238,4 @@ STORAGES = {
     },
     "staticfiles":{
         "BACKEND":'django.contrib.staticfiles.storage.StaticFilesStorage'},
-
 }
